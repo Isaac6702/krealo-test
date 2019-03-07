@@ -1,0 +1,7 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: config
+data:
+  MONGO: mongodb://127.0.0.1:27017/dev
+  AUTH_JWT_SECRET: mMm8WrTZhh5dcx79DUVUrzyaL3fTmrpy

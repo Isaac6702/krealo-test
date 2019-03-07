@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: test
+        image: iarismendi/weather:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
+        args:
+          - /bin/sh
+          - -c
+          - echo running api;npm start
+        env:        
+        - name: MONGO
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: MONGO
+        - name: AUTH_JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: config
+              key: AUTH_JWT_SECRET
+      
